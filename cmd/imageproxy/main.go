@@ -214,7 +214,7 @@ func lruCache(options string) (*lrucache.LruCache, error) {
 func diskCache(path string) *diskcache.Cache {
 	d := diskv.New(diskv.Options{
 		BasePath: path,
-		CacheSizeMax: 10000 * 1024 * 1024, // 10Gb
+		CacheSizeMax: 50000 * 1024 * 1024, // 50Gb
 		// For file "c0ffee", store file as "c0/ff/c0ffee"
 		Transform: func(s string) []string { return []string{s[0:2], s[2:4]} },
 	})
