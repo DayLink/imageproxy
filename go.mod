@@ -1,4 +1,4 @@
-module DayLink/imageproxy
+module willnorris.com/go/imageproxy
 
 require (
 	cloud.google.com/go v0.37.1
@@ -45,4 +45,4 @@ replace (
 	github.com/jamiealquiza/envy => ./third_party/envy
 )
 
-go 1.14
+go 1.13
