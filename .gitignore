@@ -1,6 +1,7 @@
 build
 .goxc.local.json
 *.test
+app
 
 vendor/**/.travis.yml
 vendor/**/.gitignore

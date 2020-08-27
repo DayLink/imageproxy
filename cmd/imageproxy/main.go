@@ -50,6 +50,7 @@ var referrers = flag.String("referrers", "", "comma separated list of allowed re
 var includeReferer = flag.Bool("includeReferer", false, "include referer header in remote requests")
 var baseURL = flag.String("baseURL", "", "default base URL for relative remote URLs")
 var cache tieredCache
+var cacheSizeGB = flag.Uint64("cacheSize", 50, "cache size GB for local cahe")
 var signatureKeys signatureKeyList
 var scaleUp = flag.Bool("scaleUp", false, "allow images to scale beyond their original dimensions")
 var timeout = flag.Duration("timeout", 0, "time limit for requests served by this proxy")
@@ -214,7 +215,7 @@ func lruCache(options string) (*lrucache.LruCache, error) {
 func diskCache(path string) *diskcache.Cache {
 	d := diskv.New(diskv.Options{
 		BasePath: path,
-		CacheSizeMax: 50000 * 1024 * 1024, // 50Gb
+		CacheSizeMax: *cacheSizeGB * 1000 * 1024 * 1024, // Gb
 		// For file "c0ffee", store file as "c0/ff/c0ffee"
 		Transform: func(s string) []string { return []string{s[0:2], s[2:4]} },
 	})
